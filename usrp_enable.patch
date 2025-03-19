@@ -1,0 +1,29 @@
+diff --git make_macos_bundle.sh make_macos_bundle.sh
+index 6dd151f8..d5a52f5f 100644
+--- make_macos_bundle.sh
++++ make_macos_bundle.sh
+@@ -49,7 +49,7 @@ bundle_install_binary $BUNDLE $BUNDLE/Contents/Plugins $BUILD_DIR/source_modules
+ bundle_install_binary $BUNDLE $BUNDLE/Contents/Plugins $BUILD_DIR/source_modules/sdrplay_source/sdrplay_source.dylib
+ bundle_install_binary $BUNDLE $BUNDLE/Contents/Plugins $BUILD_DIR/source_modules/sdrpp_server_source/sdrpp_server_source.dylib
+ bundle_install_binary $BUNDLE $BUNDLE/Contents/Plugins $BUILD_DIR/source_modules/spyserver_source/spyserver_source.dylib
+-# bundle_install_binary $BUNDLE $BUNDLE/Contents/Plugins $BUILD_DIR/source_modules/usrp_source/usrp_source.dylib
++bundle_install_binary $BUNDLE $BUNDLE/Contents/Plugins $BUILD_DIR/source_modules/usrp_source/usrp_source.dylib
+ 
+ # Sink modules
+ bundle_install_binary $BUNDLE $BUNDLE/Contents/Plugins $BUILD_DIR/sink_modules/portaudio_sink/audio_sink.dylib
+diff --git source_modules/usrp_source/CMakeLists.txt source_modules/usrp_source/CMakeLists.txt
+index 992d4100..8e511262 100644
+--- source_modules/usrp_source/CMakeLists.txt
++++ source_modules/usrp_source/CMakeLists.txt
+@@ -15,6 +15,11 @@ if (MSVC)
+ else (MSVC)
+     find_package(PkgConfig)
+ 
++    find_package(Boost REQUIRED COMPONENTS system)
++    target_include_directories(usrp_source PRIVATE ${Boost_INCLUDE_DIRS})
++    target_link_directories(usrp_source PRIVATE ${Boost_LIBRARY_DIRS})
++    target_link_libraries(usrp_source PRIVATE ${Boost_LIBRARIES})
++
+     pkg_check_modules(LIBUHD REQUIRED uhd)
+ 
+     target_include_directories(usrp_source PRIVATE ${LIBUHD_INCLUDE_DIRS})
