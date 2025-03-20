@@ -12,7 +12,7 @@ The [official](https://github.com/AlexandreRouma/SDRPlusPlus) build has USRP dis
 
 #### Install dependencies
 ```sh
-brew install cmake pkgconf fftw glfw volk uhd
+brew install cmake pkgconf fftw glfw volk uhd portaudio
 ```
 
 #### Building
