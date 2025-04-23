@@ -13,11 +13,10 @@ jobs:
         run: brew install cmake pkgconf fftw glfw volk uhd portaudio
 
       - name: Build
-        working-directory: ${{runner.workspace}}
         run: sh build.sh
       
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: Apple(Arm)-binary
-          path: ${{runner.workspace}}/SDR++.app
+          path: SDR++.app
