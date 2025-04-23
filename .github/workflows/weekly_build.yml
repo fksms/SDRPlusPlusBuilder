@@ -1,0 +1,18 @@
+name: "Weekly Build"
+
+# 毎週日曜日の午前0時（UTC）に実行
+on:
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  build-test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: brew install cmake pkgconf fftw glfw volk uhd portaudio
+
+      - name: Build
+        run: sh build.sh

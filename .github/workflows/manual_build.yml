@@ -1,4 +1,4 @@
-name: "Build test"
+name: "Manual Build"
 
 # 手動で実行
 on: workflow_dispatch
@@ -14,9 +14,9 @@ jobs:
 
       - name: Build
         run: sh build.sh
-      
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Apple(Arm)-binary
+          name: apple_arm_binary
           path: SDR++.app
