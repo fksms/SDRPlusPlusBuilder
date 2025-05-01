@@ -2,6 +2,9 @@
 
 REPO_NAME=SDRPlusPlus
 
+# Shell options
+set -xe
+
 # Clone repository
 git clone --depth 1 https://github.com/AlexandreRouma/${REPO_NAME}
 sleep 1
