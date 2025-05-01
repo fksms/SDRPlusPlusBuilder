@@ -4,7 +4,7 @@ name: "Manual Build"
 on: workflow_dispatch
 
 jobs:
-  build-test:
+  build:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,8 +15,11 @@ jobs:
       - name: Build
         run: sh build.sh
 
+      - name: Archive .app bundle
+        run: zip -r SDR++.zip SDR++.app
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: apple_arm_binary
-          path: SDR++.app
+          name: sdrpp_binary
+          path: SDR++.zip
